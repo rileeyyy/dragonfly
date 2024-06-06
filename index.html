@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dragonfly - a web browser</title>
+    <style>
+        body {
+            font-family: Helvetica, sans-serif;
+            color: white;
+            background: linear-gradient(to bottom right, blueviolet, black);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        header a {
+            color: lightblue;
+        }
+
+        #about {
+            padding: 50px 0;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        #about h2 {
+            color: lightblue;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .slide {
+            opacity: 0;
+            width: 45%;
+            text-align: center;
+            position: relative;
+            animation-duration: 1s;
+            animation-fill-mode: both;
+        }
+
+        .slide:nth-child(even) {
+            animation-name: slideInRight;
+        }
+
+        .slide:nth-child(odd) {
+            animation-name: slideInLeft;
+        }
+
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide img {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 10px;
+        }
+
+        .slide p {
+            text-align: center;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: lightblue;
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>dragonfly.</h1>
+        <p>don't just surf the web, fly the web.</p>
+        <p>a project by <a href="https://rileeyyy.github.io">riley</a></p>
+        <a href="https://drive.google.com/file/d/1TMJDlTXYbdtIhz_yqiCQ2L4fcbgszFO5/view">download dragonfly 1.1.0</a>
+        <p>--<a href="https://www.java.com/en/">java</a> needed--</p>
+    </header>
+
+    <section id="about">
+        <h2>--about dragonfly--</h2>
+        <div class="slide">
+            <img src="img1.png" alt="simple web browser">
+            <p>a simple web browser, no extra ai stuff, just browsing.</p>
+        </div>
+        <div class="slide">
+            <img src="img2.png" alt="dark mode and homepage setting">
+            <p>dark mode and homepage setting, with <a href="https://resulti.net">resulti</a> and <a href="https://queye.co">queye</a>.</p>
+        </div>
+        <div class="slide">
+            <img src="img3.png" alt="full css and js support">
+            <p>full css and js support, what more could you want?</p>
+        </div>
+        <div class="slide">
+            <img src="img4.png" alt="download now">
+            <p>so what are you waiting for, download now!</p>
+        </div>
+    </section>
+
+    <a href="#" class="back-to-top">back to top</a>
+
+    <script>
+        window.onscroll = function () {
+            scrollFunction();
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.querySelector('.back-to-top').style.display = 'block';
+            } else {
+                document.querySelector('.back-to-top').style.display = 'none';
+            }
+        }
+
+        document.querySelector('.back-to-top').addEventListener('click', function () {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        });
+    </script>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlides() {
+            slides.forEach((slide, index) => {
+                setTimeout(() => {
+                    slide.style.opacity = '1';
+                }, index * 5000); 
+            });
+        }
+
+        showSlides();
+    </script>
+</body>
+
+</html>
