@@ -1,171 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dragonfly - a web browser</title>
-    <style>
-        body {
-            font-family: Helvetica, sans-serif;
-            color: white;
-            background: linear-gradient(to bottom right, blueviolet, black);
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            text-align: center;
-            padding: 50px 0;
-        }
-
-        header a {
-            color: lightblue;
-        }
-
-        #about {
-            padding: 50px 0;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-
-        #about h2 {
-            color: lightblue;
-            width: 100%;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .slide {
-            opacity: 0;
-            width: 45%;
-            text-align: center;
-            position: relative;
-            animation-duration: 1s;
-            animation-fill-mode: both;
-        }
-
-        .slide:nth-child(even) {
-            animation-name: slideInRight;
-        }
-
-        .slide:nth-child(odd) {
-            animation-name: slideInLeft;
-        }
-
-        @keyframes slideInRight {
-            0% {
-                opacity: 0;
-                transform: translateX(100%);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInLeft {
-            0% {
-                opacity: 0;
-                transform: translateX(-100%);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .slide img {
-            width: 100%;
-            max-width: 200px;
-            border-radius: 10px;
-        }
-
-        .slide p {
-            text-align: center;
-        }
-
-        .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 10px 20px;
-            background-color: lightblue;
-            color: black;
-            text-decoration: none;
-            border-radius: 5px;
-            display: none;
-        }
-    </style>
-</head>
-
-<body>
-    <header>
-        <h1>dragonfly.</h1>
-        <p>don't just surf the web, fly the web.</p>
-        <p>a project by <a href="https://rileeyyy.github.io">riley</a></p>
-        <a href="https://drive.google.com/file/d/1bXhtCFTnrWHezF8_LSUjf5anpIhSgLO2/view">download dragonfly 1.1.1</a>
-        <p>--<a href="https://www.java.com/en/">java</a> needed--</p>
-        <p>instructions on running in "how 2 run.txt"</p>
-    </header>
-
-    <section id="about">
-        <h2>--about dragonfly--</h2>
-        <div class="slide">
-            <img src="img1.png" alt="simple web browser">
-            <p>a simple web browser, no extra ai stuff, just browsing.</p>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>dragonfly - a web browser</title>
+        <link rel="icon" type="image/png" href="image/favicon.svg">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/alpinejs" defer></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css" integrity="sha512-MqL4+Io386IOPMKKyplKII0pVW5e+kb+PI/I3N87G3fHIfrgNNsRpzIXEi+0MQC0sR9xZNqZqCYVcC61fL5+Vg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    <body class="min-h-screen text-white bg-gradient-to-t from-[#030303] to-[#121212]" onload="updateYear()">
+        <section class="relative border-b border-white/10 overflow-hidden">
+            <div class="relative w-full mx-auto max-w-7xl">
+                <div class="relative flex flex-col w-full p-5 mx-auto lg:px-16 md:flex-row md:items-center md:justify-between md:px-6" x-data="{ open: false }">
+                    <a href="/" class="text-3xl font-bold text-white">dragonfly.</a>
+                    <div class="flex flex-row items-center justify-between text-sm text-white lg:justify-start">
+                        <button @click="open = !open" class="inline-flex items-center justify-center p-2 text-white focus:outline-none focus:text-white/50 hover:text-white md:hidden">
+                            <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path :class="{'hidden': open, 'inline-flex': !open }" class="inline-flex" d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                <path :class="{'hidden': !open, 'inline-flex': open }" class="hidden" d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <nav :class="{'flex': open, 'hidden': !open}" class="flex-col items-center flex-grow hidden md:flex md:flex-row md:justify-end md:pb-0">
+                        <a href="https://drive.google.com/drive/folders/1GBJB4VnjKwlFSywMEckVAe0ca-UIvDDM?usp=sharing" class="items-center justify-center focus:outline-none inline-flex text-white hover:bg-[#687af0]/5 rounded-xl active:bg-[#687af0] active:text-#fff bg-violet-600 duration-200 focus-visible:outline-2 focus-visible:outline-[#687af0] focus-visible:outline-offset-2 group px-4 py-2 text-sm"><i class="ri-download-2-line mr-2"></i>Download</a>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        <section class="relative">
+            <svg class="absolute" fill="none" viewBox="0 0 960 637" height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+                <g filter="url(#filter0_f_1_167)">
+                    <ellipse cx="479.5" cy="318.5" fill="#414c96" fill-opacity="0.5" rx="118.5" ry="118.5" transform="rotate(-90 479.5 318.5)"></ellipse>
+                </g>
+                <mask height="573" id="mask0_1_167" maskUnits="userSpaceOnUse" style="mask-type: alpha" width="960" x="0" y="32">
+                    <rect height="573" width="960" y="32" fill="url(#paint0_radial_1_167)"></rect>
+                </mask>
+                <g mask="url(#mask0_1_167)">
+                    <rect height="79" width="79" y="41.5" stroke="white" x="123.5"></rect>
+                    <rect height="79" width="79" y="41.5" stroke="white" x="202.5"></rect>
+                    <rect height="79" width="79" y="41.5" stroke="white" x="281.5"></rect>
+                    <rect height="79" width="79" y="41.5" stroke="white" x="360.5"></rect>
+                    <rect height="79" width="79" y="41.5" stroke="white" x="439.5"></rect>
+                    <rect height="79" width="79" y="41.5" stroke="white" x="518.5"></rect>
+                    <rect height="79" width="79" y="41.5" stroke="white" x="597.5" fill="white" fill-opacity="0.25"></rect>
+                    <rect height="79" width="79" y="41.5" stroke="white" x="676.5"></rect>
+                    <rect height="79" width="79" y="41.5" stroke="white" x="755.5"></rect>
+                    <rect height="79" width="79" y="120.5" stroke="white" x="123.5"></rect>
+                    <rect height="79" width="79" y="120.5" stroke="white" x="202.5"></rect>
+                    <rect height="79" width="79" y="120.5" stroke="white" x="281.5"></rect>
+                    <rect height="79" width="79" y="120.5" stroke="white" x="360.5"></rect>
+                    <rect height="79" width="79" y="120.5" stroke="white" x="439.5"></rect>
+                    <rect height="79" width="79" y="120.5" stroke="white" x="518.5"></rect>
+                    <rect height="79" width="79" y="120.5" stroke="white" x="597.5"></rect>
+                    <rect height="79" width="79" y="120.5" stroke="white" x="676.5"></rect>
+                    <rect height="79" width="79" y="120.5" stroke="white" x="755.5"></rect>
+                    <rect height="79" width="79" y="199.5" stroke="white" x="123.5"></rect>
+                    <rect height="79" width="79" y="199.5" stroke="white" x="202.5"></rect>
+                    <rect height="79" width="79" y="199.5" stroke="white" x="281.5"></rect>
+                    <rect height="79" width="79" y="199.5" stroke="white" x="360.5"></rect>
+                    <rect height="79" width="79" y="199.5" stroke="white" x="439.5" fill="white" fill-opacity="0.25"></rect>
+                    <rect height="79" width="79" y="199.5" stroke="white" x="518.5"></rect>
+                    <rect height="79" width="79" y="199.5" stroke="white" x="597.5" fill="white" fill-opacity="0.25"></rect>
+                    <rect height="79" width="79" y="199.5" stroke="white" x="676.5"></rect>
+                    <rect height="79" width="79" y="199.5" stroke="white" x="755.5"></rect>
+                    <rect height="79" width="79" y="278.5" stroke="white" x="123.5"></rect>
+                    <rect height="79" width="79" y="278.5" stroke="white" x="202.5"></rect>
+                    <rect height="79" width="79" y="278.5" stroke="white" x="281.5"></rect>
+                    <rect height="79" width="79" y="278.5" stroke="white" x="360.5"></rect>
+                    <rect height="79" width="79" y="278.5" stroke="white" x="439.5"></rect>
+                    <rect height="79" width="79" y="278.5" stroke="white" x="518.5"></rect>
+                    <rect height="79" width="79" y="278.5" stroke="white" x="597.5"></rect>
+                    <rect height="79" width="79" y="278.5" stroke="white" x="676.5"></rect>
+                    <rect height="79" width="79" y="278.5" stroke="white" x="755.5"></rect>
+                    <rect height="79" width="79" y="357.5" stroke="white" x="123.5"></rect>
+                    <rect height="79" width="79" y="357.5" stroke="white" x="202.5"></rect>
+                    <rect height="79" width="79" y="357.5" stroke="white" x="281.5"></rect>
+                    <rect height="79" width="79" y="357.5" stroke="white" x="360.5" fill="white" fill-opacity="0.25"></rect>
+                    <rect height="79" width="79" y="357.5" stroke="white" x="439.5"></rect>
+                    <rect height="79" width="79" y="357.5" stroke="white" x="518.5"></rect>
+                    <rect height="79" width="79" y="357.5" stroke="white" x="597.5"></rect>
+                    <rect height="79" width="79" y="357.5" stroke="white" x="676.5"></rect>
+                    <rect height="79" width="79" y="357.5" stroke="white" x="755.5"></rect>
+                    <rect height="79" width="79" y="436.5" stroke="white" x="123.5"></rect>
+                    <rect height="79" width="79" y="436.5" stroke="white" x="202.5"></rect>
+                    <rect height="79" width="79" y="436.5" stroke="white" x="281.5"></rect>
+                    <rect height="79" width="79" y="436.5" stroke="white" x="360.5"></rect>
+                    <rect height="79" width="79" y="436.5" stroke="white" x="439.5"></rect>
+                    <rect height="79" width="79" y="436.5" stroke="white" x="518.5"></rect>
+                    <rect height="79" width="79" y="436.5" stroke="white" x="597.5"></rect>
+                    <rect height="79" width="79" y="436.5" stroke="white" x="676.5"></rect>
+                    <rect height="79" width="79" y="436.5" stroke="white" x="755.5"></rect>
+                    <rect height="79" width="79" y="515.5" stroke="white" x="123.5"></rect>
+                    <rect height="79" width="79" y="515.5" stroke="white" x="202.5"></rect>
+                    <rect height="79" width="79" y="515.5" stroke="white" x="281.5"></rect>
+                    <rect height="79" width="79" y="515.5" stroke="white" x="360.5"></rect>
+                    <rect height="79" width="79" y="515.5" stroke="white" x="439.5"></rect>
+                    <rect height="79" width="79" y="515.5" stroke="white" x="518.5"></rect>
+                    <rect height="79" width="79" y="515.5" stroke="white" x="597.5"></rect>
+                    <rect height="79" width="79" y="515.5" stroke="white" x="676.5"></rect>
+                    <rect height="79" width="79" y="515.5" stroke="white" x="755.5"></rect>
+                </g>
+                <defs>
+                    <filter color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" height="637" id="filter0_f_1_167" width="637" x="161" y="1.14441e-05">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                        <feBlend in="SourceGraphic" in2="BackgroundImageFix" mode="normal" result="shape"></feBlend>
+                        <feGaussianBlur result="effect1_foregroundBlur_1_167" stdDeviation="100"></feGaussianBlur>
+                    </filter>
+                    <radialGradient cx="0" cy="0" gradientTransform="translate(480 318.5) rotate(90) scale(353.19 591.732)" gradientUnits="userSpaceOnUse" id="paint0_radial_1_167" r="1">
+                        <stop stop-color="#D9D9D9" stop-opacity="0.2"></stop>
+                        <stop stop-color="#D9D9D9" stop-opacity="0" offset="0.802083"></stop>
+                    </radialGradient>
+                </defs>
+            </svg>
+            <div class="relative items-center w-full px-5 py-12 mx-auto max-w-7xl lg:px-16 lg:py-36 md:px-12">
+                <div class="mx-auto text-center">
+                    <div>
+                        <p class="text-4xl font-medium tracking-tight text-white md:text-7xl">
+                            don't just <span class="font-black">surf</span> the web,
+                            <span class="block text-8xl font-black text-violet-600">fly the web.</span>
+                        </p>
+                        <p class="max-w-xl mx-auto mt-4 text-base lg:text-xl text-white/70">a java web browser, designed and made by  <a class="my-2 relative font-medium text-gray-400 hover:text-violet-600 before:absolute before:h-0.5 before:w-full before:-bottom-0.5 before:origin-center before:scale-x-0 before:bg-gradient-to-r before:from-violet-600 before:to-indigo-600 before:transition hover:before:scale-100" href="https://rileeyyy.github.io">riley</a>.
+                        </p>
+                    </div>
+                    <div class="flex flex-col justify-center gap-3 mt-10 sm:flex-row">
+                        <a class="items-center justify-center focus:outline-none inline-flex text-white hover:bg-[#687af0]/5 rounded-xl duration-200 focus-visible:outline-black focus-visible:ring-black font-medium hover:text-violet-600 lg:w-auto px-6 py-3 text-center w-full bg-violet-600" href="https://drive.google.com/drive/folders/1GBJB4VnjKwlFSywMEckVAe0ca-UIvDDM?usp=sharing"><i class="ri-download-2-line mr-2"></i>Download <span class="text-xs ml-2">v1.1.1</span></a>
+                        <a class="items-center justify-center focus:outline-none inline-flex text-white hover:bg-[#687af0]/5 rounded-xl duration-200 focus-visible:outline-black focus-visible:ring-black font-medium hover:text-violet-600 lg:w-auto px-6 py-3 text-center w-full bg-[#687af0]/5" href="https://github.com/rileeyyy/dragonfly">Github <i class="ml-2 ri-external-link-line"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="relative items-center w-full pb-12 mx-auto mt-2 max-w-7xl">
+            <img class="relative object-cover w-full rounded shadow-2xl lg:rounded-xl" src="https://rileeyyy.github.io/dragonfly/img1.png">
         </div>
-        <div class="slide">
-            <img src="img2.png" alt="dark mode and homepage settings">
-            <p>dark mode and homepage settings, with <a href="https://search.clickette.net">clickette</a> and more</p>
-        </div>
-        <div class="slide">
-            <img src="img3.png" alt="full css and js support">
-            <p>full css and js support, what more could you want?</p>
-        </div>
-        <div class="slide">
-            <img src="img4.png" alt="download now">
-            <p>so what are you waiting for, download now!</p>
-        </div>
-    </section>
-
-    <a href="#" class="back-to-top">back to top</a>
-
+        <footer>
+            <div class="px-8 pb-4 pt-32 md:px-12 lg:px-32 mx-auto max-w-7xl">
+                <div class="text-center">
+                    <span class="text-sm font-medium text-gray-400 text-balance">
+                    &copy; <span id="copyrightYear"></span> rileeyyy. All rights reserved. Website designed by <a href="https://theunium.github.io">TheUnium</a>
+                    </span>
+                </div>
+            </div>
+        </footer>
+        <button id="to-top-button" onclick="goToTop()" title="Go To Top"
+            class="hidden fixed z-90 bottom-8 right-8 border-0 w-12 h-12 rounded-full drop-shadow-md bg-violet-600 text-white text-3xl font-bold"><i class="ri-arrow-up-double-line"></i>
+        </button>
+    </body>
     <script>
+        function updateYear() {
+            var currentYear = new Date().getFullYear();
+            document.getElementById("copyrightYear").innerHTML = currentYear;
+        }
+    </script>
+    <script>
+        var toTopButton = document.getElementById("to-top-button");
+        
         window.onscroll = function () {
-            scrollFunction();
-        };
-
-        function scrollFunction() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                document.querySelector('.back-to-top').style.display = 'block';
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                toTopButton.classList.remove("hidden");
             } else {
-                document.querySelector('.back-to-top').style.display = 'none';
+                toTopButton.classList.add("hidden");
             }
         }
-
-        document.querySelector('.back-to-top').addEventListener('click', function () {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-        });
-    </script>
-
-    <script>
-        const slides = document.querySelectorAll('.slide');
-
-        function showSlides() {
-            slides.forEach((slide, index) => {
-                setTimeout(() => {
-                    slide.style.opacity = '1';
-                }, index * 5000); 
-            });
+        
+        function goToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
-        showSlides();
     </script>
-</body>
-
 </html>
